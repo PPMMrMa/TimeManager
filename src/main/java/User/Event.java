@@ -26,6 +26,13 @@ public class Event {
         this.eventType=eventType;
         isFinished=false;
     }
+    public  String EventTypeToString(){
+        if(eventType==EventType.GROUP){
+            return "群组事件";
+        }else{
+            return "个人事件";
+        }
+    }
     public Event(){
 
     }

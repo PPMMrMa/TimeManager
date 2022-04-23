@@ -10,14 +10,10 @@
 <head>
     <title>Title</title>
 </head>
-<body>
-<html>
-<div style="border: 0px; height: 1552px; min-height: 1282px; float: left; position: relative; z-index: 99; overflow: hidden; width: 1060px;background-color: pink">
-
+<body style="background-color: #f0f0f2">
+<div style="background-color:#001529;width: 100%;height: 10%;">
+  <span><h1 style="color: white;font-family: Algerian;font-size: 19px" >一记网站</h1></span>
 </div>
-
-
-</html>
 
 </body>
 </html>

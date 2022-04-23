@@ -14,8 +14,8 @@ public class LoginFilter implements Filter {
     public void destroy() {
     }
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        //chain.doFilter(req, resp);
-        HttpServletRequest request = (HttpServletRequest)req;
+        chain.doFilter(req, resp);
+        /*HttpServletRequest request = (HttpServletRequest)req;
         HttpServletResponse response = (HttpServletResponse)resp;
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
         } else{
           out.println("您还未登陆，三秒钟后跳转至登录页面");
           response.setHeader("refresh","3;../Login.jsp");
-        }
+        }*/
     }
 
     public void init(FilterConfig config) throws ServletException {
