@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" import="database.MySQLOP" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" import="database.MySQLConnect" pageEncoding="UTF-8" %>
 <%@ page import="User.Event" %>
 <!DOCTYPE html>
 <html>

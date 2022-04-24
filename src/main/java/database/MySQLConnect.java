@@ -1,20 +1,18 @@
 package database;
 
-import User.Event;
-
 import java.sql.*;
 
-public class MySQLOP {
+public class MySQLConnect {
 
-    private  static  MySQLOP _instance=null;
-    public  static MySQLOP Instance(){
+    private  static MySQLConnect _instance=null;
+    public  static MySQLConnect Instance(){
 
         if(_instance==null){
-            _instance=new MySQLOP();
+            _instance=new MySQLConnect();
         }
         return  _instance;
     }
-   private MySQLOP(){
+   private MySQLConnect(){
 
    }
     private Statement statement;
@@ -46,23 +44,6 @@ public class MySQLOP {
             e.printStackTrace();
             throw e;
         }
-    }
-    public boolean InsertEvent(Event event)throws Exception{
-        if(!isInit())return false;
-        try {
-            ConnectDB();
-            String sql="INSERT INTO event(id,title,remark,type) VALUES(?,?,?,?)";
-            PreparedStatement ps=connection.prepareStatement(sql);
-            ps.setString(1,event.getId());
-            ps.setString(2,event.getTitle());
-            ps.setString(3,event.getRemark());
-            ps.setString(4,event.EventTypeToString());
-            ps.executeUpdate();
-            Destory();
-        }catch (Exception e){
-            throw e;
-        }
-        return true;
     }
     private void Destory()throws Exception{
         try{

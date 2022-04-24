@@ -1,35 +1,30 @@
 package com.example.timemanager;
 
-import User.Event;
-import database.MySQLOP;
+import database.MySQLConnect;
 
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "InitServert",value = "/pages")
+@WebServlet("/InitServlet")
 public class InitServlet extends HttpServlet {
     private String message;
-
-    public void init() {
+   public  InitServlet(){
+    System.out.println("初始化成功");
+}
+    public void init() { System.out.println("初始化成功");
     }
+   @Override
+    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        System.out.println("进入");
-        System.out.println("成功");
-              if(!MySQLOP.Instance().isInit()){
-                  String url="jdbc:mysql://localhost:3306/timemanager";
-                  String name="root";
-                  String password="mpc1314520";
-                  MySQLOP.Instance().InitMySQL(url,name,password);
-                  System.out.println("初始化成功");
-              }
               try{
-                  Event event=new Event("111","222","333",0);
-                  System.out.println("创建成功");
-                  MySQLOP.Instance().InsertEvent(event);
-                  System.out.println("插入成功");
+                  if(!MySQLConnect.Instance().isInit()){
+                      String url="jdbc:mysql://localhost:3306/timemanager";
+                      String name="root";
+                      String password="mpc1314520";
+                      MySQLConnect.Instance().InitMySQL(url,name,password);
+                  }
+                  response.getWriter().println("Hi");
               }catch (Exception e){
                   e.printStackTrace();
               }

@@ -1,16 +1,16 @@
 package tool;
 
-import User.*;
+import Entity.*;
 
-public class EventManager {
-    private EventManager _instance;
-    public EventManager Instance(){
+public class EventDao {
+    private EventDao _instance;
+    public EventDao Instance(){
        if(_instance==null){
-           _instance=new EventManager();
+           _instance=new EventDao();
        }
         return _instance;
     }
-    private EventManager(){
+    private EventDao(){
 
     }
     //给某个群添加事件
