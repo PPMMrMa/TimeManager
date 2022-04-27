@@ -3,8 +3,6 @@ package tool;
 import database.MySQLConnect;
 
 import java.sql.*;
-
-
 public class ID {
     //UID 11位  GID 13位
     private static ID _instance;

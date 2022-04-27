@@ -12,5 +12,6 @@
 out.println(ID.Instance().GenerateGroupID());
 
 %>
+埃里克森的卢卡斯
 </body>
 </html>
