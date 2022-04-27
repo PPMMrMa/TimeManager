@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+
 public class UserDao {
     private  static  UserDao _instance;
     public static UserDao Instance(){
@@ -60,7 +61,7 @@ public class UserDao {
             while (res.next()){
                 String str=res.getString("groupid");
                 group.add(str);
-                System.out.println("一行"+"  "+str);
+
             }
             preparedStatement.close();
             connection.close();
@@ -71,7 +72,24 @@ public class UserDao {
     }
     //得到用户创建的群
     public  ArrayList  getOwnGroup(String userId){
-        return  new ArrayList();
+        ArrayList group=new ArrayList();
+        try{
+            Connection connection =MySQLConnect.Instance().GetConnection();
+            String sql="SELECT id FROM timegroup WHERE ownerId=?";
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+            preparedStatement.setString(1,userId);
+            ResultSet res=preparedStatement.executeQuery();
+            while (res.next()){
+                String str=res.getString("id");
+                group.add(str);
+            }
+            preparedStatement.close();
+            connection.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return  group;
+
     }
     //得到用户好友信息
     public ArrayList getFriendsInfo(String userId){
