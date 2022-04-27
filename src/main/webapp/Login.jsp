@@ -10,7 +10,7 @@
 </h1>
 <%
 out.println(ID.Instance().GenerateGroupID());
-sadksakflkdask'salda's
+
 %>
 </body>
 </html>
