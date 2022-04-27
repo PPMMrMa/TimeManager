@@ -9,6 +9,7 @@
 <h1>
 </h1>
 <%
+
 out.println(ID.Instance().GenerateGroupID());
 
 %>
