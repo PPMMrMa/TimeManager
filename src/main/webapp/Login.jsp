@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" import="database.MySQLConnect" pageEncoding="UTF-8" %>
-<%@ page import="User.Event" %>
+<%@ page contentType="text/html; charset=UTF-8" import="tool.ID" pageEncoding="UTF-8" %>
+<%@ page  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,9 @@
 <body>
 <h1>
 </h1>
-
-dsaasda
+<%
+out.println(ID.Instance().GenerateGroupID());
+sadksakflkdask'salda's
+%>
 </body>
 </html>

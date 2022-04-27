@@ -14,6 +14,8 @@
 <div style="background-color:#001529;width: 100%;height: 10%;">
   <span><h1 style="color: white;font-family: Algerian;font-size: 19px" >一记网站</h1></span>
 </div>
-
+<div>
+    <iframe src="Group.jsp"></iframe>
+</div>
 </body>
 </html>

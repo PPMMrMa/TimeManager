@@ -1,6 +1,6 @@
 package tool;
 
-import Entity.*;
+import entities.*;
 
 public class EventDao {
     private EventDao _instance;
@@ -29,7 +29,6 @@ public class EventDao {
     public  boolean AddEventForUsers(String []userIds,Event event){
         return true;
     }
-
     //删除所有用户或者群的该事件
     public boolean DeleteEventInAll(String eventId){
         return true;
