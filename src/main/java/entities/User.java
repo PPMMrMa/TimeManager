@@ -9,8 +9,11 @@ public class User {
  private String address;
  private String organization;
  private  byte[] head;
- private  String[] groupId;
 
+
+
+    private  String[] groupId;
+ private  String[] friendsId;
     public String[] getGroupId() {
         return groupId;
     }
@@ -96,6 +99,12 @@ public class User {
         this.head = head;
     }
 
+    public String[] getFriendsId() {
+        return friendsId;
+    }
 
+    public void setFriendsId(String[] friendsId) {
+        this.friendsId = friendsId;
+    }
 
 }

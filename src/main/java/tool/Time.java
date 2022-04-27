@@ -7,7 +7,7 @@ public class Time {
     private  int day;
     private  int hour;
     private int minute;
-   //检查时间格式
+   //检查时间格式是否正确
     public static boolean CheckTime(String time){
         Time t=StringToTime(time);
         if(time.length()!=12) {

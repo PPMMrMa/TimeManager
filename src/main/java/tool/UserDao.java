@@ -5,6 +5,7 @@ import  entities.*;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class UserDao {
@@ -29,7 +30,6 @@ public class UserDao {
         String uid=ID.Instance().GenerateUserID();
         String sql="INSERT INTO USER(name,passWord,phoneNumber,id) VALUES(?,?,?,?)";
         Connection connection=null;
-
         try{
             connection=MySQLConnect.Instance().GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(sql);
@@ -39,7 +39,6 @@ public class UserDao {
             preparedStatement.setString(4,uid);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-             System.out.println("插入成功");
         }catch (Exception e){
           e.printStackTrace();
         }
@@ -49,9 +48,26 @@ public class UserDao {
         user.setPhoneNumber(phoneNumber);
         return  new User();
     }
-    //得到用户所在的群
+    //得到用户所在的群的ID
     public ArrayList getGroups(String userId){
-        return  new ArrayList();
+        ArrayList group=new ArrayList();
+        try{
+            Connection connection =MySQLConnect.Instance().GetConnection();
+            String sql="SELECT groupid FROM gulink WHERE userid=?";
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+            preparedStatement.setString(1,userId);
+            ResultSet res=preparedStatement.executeQuery();
+            while (res.next()){
+                String str=res.getString("groupid");
+                group.add(str);
+                System.out.println("一行"+"  "+str);
+            }
+            preparedStatement.close();
+            connection.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return  group;
     }
     //得到用户创建的群
     public  ArrayList  getOwnGroup(String userId){
