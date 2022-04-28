@@ -11,6 +11,11 @@
 <body>
 <h1>
 </h1>
-
+<%
+    ArrayList arrayList= UserDao.Instance().getGroups("54535541241");
+   for (int i=0;i<arrayList.size();i++){
+       out.print(arrayList.get(i)+"<br>");
+   }
+%>
 </body>
 </html>

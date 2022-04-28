@@ -3,7 +3,11 @@ package tool;
 import  database.MySQLConnect;
 import entities.User;
 
-public class TempClass {
+import java.util.ArrayList;
 
+public class TempClass {
+    public  static void TEST(){
+
+    }
 
 }
