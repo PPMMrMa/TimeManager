@@ -10,23 +10,16 @@ import java.util.ArrayList;
 
 
 public class UserDao {
-    private  static  UserDao _instance;
-    public static UserDao Instance(){
-        if(_instance==null){
-            _instance=new UserDao();
-        }
-        return _instance;
-    }
     //验证登录
-    public boolean CheckPassword(String userId,String password){
+    public static boolean CheckPassword(String userId,String password){
         return  true;
     }
     //得到用户信息
-    public User GetUserInfo(String userId){
+    public static  User GetUserInfo(String userId){
         return new User();
     }
     //注册用户
-    public User RegisterUser(String name,String password,String phoneNumber){
+    public static  User RegisterUser(String name,String password,String phoneNumber){
         User user=new User();
         String uid=ID.Instance().GenerateUserID();
         String sql="INSERT INTO USER(name,passWord,phoneNumber,id) VALUES(?,?,?,?)";
@@ -50,7 +43,7 @@ public class UserDao {
         return  new User();
     }
     //得到用户所在的群的ID
-    public ArrayList getGroups(String userId){
+    public static  ArrayList getGroups(String userId){
         ArrayList group=new ArrayList();
         try{
             Connection connection =MySQLConnect.Instance().GetConnection();
@@ -71,7 +64,7 @@ public class UserDao {
         return  group;
     }
     //得到用户创建的群
-    public  ArrayList  getOwnGroup(String userId){
+    public  static  ArrayList  getOwnGroup(String userId){
         ArrayList group=new ArrayList();
         try{
             Connection connection =MySQLConnect.Instance().GetConnection();
@@ -92,11 +85,11 @@ public class UserDao {
 
     }
     //得到用户好友信息
-    public ArrayList getFriendsInfo(String userId){
+    public  static ArrayList getFriendsInfo(String userId){
         return  new ArrayList();
     }
     //得到用户朋友ID
-    public  ArrayList getFriendsId(String userId){
+    public  static  ArrayList getFriendsId(String userId){
         return  new ArrayList();
     }
 }
