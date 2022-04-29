@@ -8,24 +8,25 @@ import javax.servlet.annotation.*;
 public class InitServlet extends HttpServlet {
     private String message;
    public  InitServlet(){
-    System.out.println("初始化成功");
+       try{
+           if(!MySQLConnect.Instance().isInit()){
+               String url="jdbc:mysql://localhost:3306/timemanager";
+               String name="root";
+               String password="mpc1314520";
+               MySQLConnect.Instance().InitMySQL(url,name,password);
+               System.out.println("数据库初始化成功");
+           }
+       }catch (Exception e){
+           e.printStackTrace();
+       }
+
 }
-    public void init() { System.out.println("初始化成功");
+    public void init() {
+
     }
 
    @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
-              try{
-                  if(!MySQLConnect.Instance().isInit()){
-                      String url="jdbc:mysql://localhost:3306/timemanager";
-                      String name="root";
-                      String password="mpc1314520";
-                      MySQLConnect.Instance().InitMySQL(url,name,password);
-                  }
-                  response.getWriter().println("..jashdjahsdjkas");
-              }catch (Exception e){
-                  e.printStackTrace();
-              }
     }
     public void destroy() {
     }

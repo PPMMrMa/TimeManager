@@ -27,14 +27,7 @@ public class MySQLConnect {
 
     }
     public  Connection GetConnection() throws SQLException{
-        //这段代码用于开发初期调试用
-        if(!isInit){
-            this.url="jdbc:mysql://localhost:3306/timemanager";;
-            this.userName="root";
-            this.password="mpc1314520";
-            this.isInit=true;
-            System.out.println("创建成功");
-        }
+
         Connection connection=null;
         try {
             //1.加载驱动程序
