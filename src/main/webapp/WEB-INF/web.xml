@@ -7,7 +7,7 @@
   </servlet>
     <servlet-mapping>
         <servlet-name>InitServlet</servlet-name>
-        <url-pattern>/hi</url-pattern>
+        <url-pattern>/initServlet</url-pattern>
     </servlet-mapping>
     <filter>
         <filter-name>LoginFilter</filter-name>

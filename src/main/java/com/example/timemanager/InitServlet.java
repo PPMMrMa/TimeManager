@@ -27,6 +27,7 @@ public class InitServlet extends HttpServlet {
 
    @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+       response.sendRedirect("./pages/Group.jsp");
     }
     public void destroy() {
     }
