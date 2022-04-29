@@ -3,12 +3,16 @@ package tool;
 import database.MySQLConnect;
 
 import java.sql.*;
+import java.util.Random;
+
 public class ID {
+    public Random random;
     //UID 11位  GID 13位
     private static ID _instance;
     public static ID Instance(){
         if(_instance==null){
             _instance=new ID();
+            _instance.random=new Random();
         }
         return  _instance;
     }
@@ -19,8 +23,9 @@ public class ID {
             temp[i]=(char)(id%10+'0');
              id/=10;
         }
-        temp[13]=(char)('0'+((int)Math.random())%10);
-        temp[14]=(char)('0'+((int)Math.random())%10);
+
+        temp[13]=(char)('0'+ Math.abs(random.nextInt())%10);
+        temp[14]=(char)('0'+Math.abs(random.nextInt())%10);
         return String.valueOf(temp);
     }
     public String GenerateUserID(){
@@ -43,12 +48,12 @@ public class ID {
             long curTime=System.currentTimeMillis();
             char [] uid=new char[13];
             for(int i=10;i>=0;i--){
-                uid[i]=(char)(((curTime%10)+Math.random()%10)%10+'0');
+                uid[i]=(char)(((curTime%10)+Math.abs(random.nextInt())%10)%10+'0');
                 curTime/=10;
             }
-            int index=(int)Math.random()%11;
+            int index=(int)Math.abs(random.nextInt())%11;
             uid[11]=(char)(uid[index]);
-            index=(int)Math.random()%12;
+            index=(int)Math.abs(random.nextInt())%12;
             uid[12]=uid[index];
 
             return  String.valueOf(uid);
@@ -56,7 +61,10 @@ public class ID {
             long curTime=System.currentTimeMillis();
             char [] uid=new char[11];
             for(int i=10;i>=0;i--){
-                uid[i]=(char)(((curTime%10)+((int)Math.random())%10)%10+'0');
+                int temp=(int)((curTime%10)+(int)Math.abs((random.nextInt()))%10)%10;
+
+                uid[i]=(char)(temp+'0');
+                System.out.println("temp:"+temp+"   uid"+i+":"+uid[i]);
                 curTime/=10;
             }
             return  String.valueOf(uid);

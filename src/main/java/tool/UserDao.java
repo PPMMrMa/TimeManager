@@ -19,10 +19,11 @@ public class UserDao {
         return new User();
     }
     //注册用户
-    public static  User RegisterUser(String name,String password,String phoneNumber){
+    public static  User RegisterUser(String name,String password,String phoneNumber,char sex){
         User user=new User();
         String uid=ID.Instance().GenerateUserID();
-        String sql="INSERT INTO USER(name,passWord,phoneNumber,id) VALUES(?,?,?,?)";
+        password=MD5Utils.stringToMD5(password);
+        String sql="INSERT INTO USER(name,passWord,phoneNumber,id,sex) VALUES(?,?,?,?,?)";
         Connection connection=null;
         try{
             connection=MySQLConnect.Instance().GetConnection();
@@ -31,6 +32,7 @@ public class UserDao {
             preparedStatement.setString(2,password);
             preparedStatement.setString(3,phoneNumber);
             preparedStatement.setString(4,uid);
+            preparedStatement.setString(5,String.valueOf(sex));
             preparedStatement.executeUpdate();
             preparedStatement.close();
         }catch (Exception e){
@@ -40,6 +42,7 @@ public class UserDao {
         user.setName(name);
         user.setPassword(password);
         user.setPhoneNumber(phoneNumber);
+        user.setSex(sex);
         return  new User();
     }
     //得到用户所在的群的ID
