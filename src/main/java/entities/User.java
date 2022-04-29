@@ -8,7 +8,10 @@ public class User {
  private String password;
  private String address;
  private String organization;
- private  byte[] head;
+
+
+    private String remark;
+ private  String  head;
 
 
 
@@ -91,11 +94,11 @@ public class User {
         this.organization = organization;
     }
 
-    public byte[] getHead() {
+    public String getHead() {
         return head;
     }
 
-    public void setHead(byte[] head) {
+    public void setHead(String head) {
         this.head = head;
     }
 
@@ -106,5 +109,13 @@ public class User {
     public void setFriendsId(String[] friendsId) {
         this.friendsId = friendsId;
     }
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
 
 }

@@ -19,10 +19,8 @@ public class InitServlet extends HttpServlet {
        }catch (Exception e){
            e.printStackTrace();
        }
-
 }
     public void init() {
-
     }
 
    @Override
