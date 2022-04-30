@@ -1,8 +1,9 @@
-package tool;
+package dao;
 
 import database.MySQLConnect;
 import entities.Group;
 import entities.User;
+import tool.ID;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class GroupDao {
     //创建一个群，传入名字和群主id即可
     public static  Group CreateGroup(String name,String ownerId){
-        String groupId=ID.Instance().GenerateGroupID();
+        String groupId= ID.Instance().GenerateGroupID();
        try{
            Connection connection= MySQLConnect.Instance().GetConnection();
            String sql="insert id,name,ownerId into timegroup values(?,?,?)";

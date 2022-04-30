@@ -1,4 +1,4 @@
-package tool;
+package dao;
 
 //时间类： 格式为12位的字符串，如2022年4月30日14点30 的对应字符串为：“202204301400”
 public class Time {

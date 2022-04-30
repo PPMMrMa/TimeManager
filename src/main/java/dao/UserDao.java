@@ -1,6 +1,8 @@
-package tool;
+package dao;
 import database.MySQLConnect;
 import  entities.*;
+import tool.ID;
+import tool.MD5Utils;
 
 import java.awt.*;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 public class UserDao {
     //验证登录
     public static boolean CheckPassword(String userId,String password){
-        password=MD5Utils.stringToMD5(password);
+        password= MD5Utils.stringToMD5(password);
         try{
             Connection connection=MySQLConnect.Instance().GetConnection();
             String sql="Select password from user where id=?";
@@ -60,7 +62,7 @@ public class UserDao {
     //注册用户
     public static  User RegisterUser(String name,String password,String phoneNumber,char sex){
         User user=new User();
-        String uid=ID.Instance().GenerateUserID();
+        String uid= ID.Instance().GenerateUserID();
         password=MD5Utils.stringToMD5(password);
         String sql="INSERT INTO USER(name,passWord,phoneNumber,id,sex) VALUES(?,?,?,?,?)";
         Connection connection=null;
