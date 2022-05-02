@@ -32,14 +32,20 @@ public class Event {
         this.eventType=eventType;
         isFinished=false;
     }
-    public  String EventTypeToString(){
-        if(eventType==EventType.GROUP){
+    public  static  String EventTypeToString(EventType e){
+        if(e==EventType.GROUP){
             return "群组事件";
         }else{
             return "个人事件";
         }
     }
-
+    public static EventType StringToEventType(String type){
+        if(type.equals("个人事件")){
+            return EventType.PERSON;
+        }else{
+            return EventType.GROUP;
+        }
+    }
     public String getId() {
         return id;
     }
