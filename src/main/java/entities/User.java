@@ -8,9 +8,7 @@ public class User {
  private String password;
  private String address;
  private String organization;
-
-
-    private String remark;
+ private String remark;
  private  String  head;
 
 

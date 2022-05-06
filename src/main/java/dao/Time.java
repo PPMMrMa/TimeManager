@@ -1,5 +1,7 @@
 package dao;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 //时间类： 格式为12位的字符串，如2022年4月30日14点30 的对应字符串为：“202204301400”
 public class Time {
     private int year;
@@ -27,8 +29,16 @@ public class Time {
       t.setMinute((time.indexOf(10)-'0')*10+(time.indexOf(11)-'0'));
         return  t;
     }
-
-
+    public static Time getLocalTime(){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Time time=new Time();
+        time.year=localDateTime.getYear();
+        time.month=localDateTime.getMonthValue();
+        time.day=localDateTime.getDayOfMonth();
+        time.hour=localDateTime.getHour();
+        time.minute=localDateTime.getMinute();
+        return time;
+    }
     public int getYear() {
         return year;
     }

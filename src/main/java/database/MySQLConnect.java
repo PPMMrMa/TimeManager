@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MySQLConnect {
 
@@ -41,6 +42,22 @@ public class MySQLConnect {
         }
         return connection;
     }
+    public boolean UpdateDatabase(String sql,String []values){
+        try{
+            Connection connection=GetConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+            for(int i=1;i<=values.length;i++){
+                preparedStatement.setString(i,values[i-1]);
+            }
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+
 
     public boolean isInit()
     {

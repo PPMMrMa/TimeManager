@@ -18,7 +18,7 @@ public class UserDao {
         password= MD5Utils.stringToMD5(password);
         try{
             Connection connection=MySQLConnect.Instance().GetConnection();
-            String sql="Select password from user where id=?";
+            String sql="select password from user where id=?";
             PreparedStatement preparedStatement=connection.prepareStatement(sql);
             preparedStatement.setString(1,userId);
             ResultSet res=preparedStatement.executeQuery();
@@ -184,22 +184,14 @@ public class UserDao {
         }
         return  arrayList;
     }
+    //加好友
     public static  boolean AddFriend(String id1,String id2){
         if(id1.length()!=11&&id2.length()!=11&&id1.equals(id2)){
             return false;
         }
-        try{
-            Connection connection=MySQLConnect.Instance().GetConnection();
-            String sql="insert id1,id2 into uulink values(?,?)";
-            PreparedStatement preparedStatement=connection.prepareStatement(sql);
-            preparedStatement.setString(1,id1);
-            preparedStatement.setString(2,id2);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return  false;
+        String sql="insert id1,id2 into uulink values(?,?)";
+        String []values={id1,id2};
+        MySQLConnect.Instance().UpdateDatabase(sql,values);
+        return true;
     }
 }

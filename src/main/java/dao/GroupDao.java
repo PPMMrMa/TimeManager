@@ -15,82 +15,40 @@ public class GroupDao {
     //创建一个群，传入名字和群主id即可
     public static  Group CreateGroup(String name,String ownerId){
         String groupId= ID.Instance().GenerateGroupID();
-       try{
-           Connection connection= MySQLConnect.Instance().GetConnection();
-           String sql="insert id,name,ownerId into timegroup values(?,?,?)";
-           PreparedStatement preparedStatement=connection.prepareStatement(sql);
-           preparedStatement.setString(1,groupId);
-           preparedStatement.setString(2,name);
-           preparedStatement.setString(3,ownerId);
-           preparedStatement.executeUpdate();
-           preparedStatement.close();
-           connection.close();
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+        String sql="insert id,name,ownerId into timegroup values(?,?,?)";
+        String []values={groupId,name,ownerId};
+        MySQLConnect.Instance().UpdateDatabase(sql,values);
         Group group=new Group();
-       group.setId(groupId);
-       group.setName(name);
-       group.setOwnerId(ownerId);
+        group.setId(groupId);
+        group.setName(name);
+        group.setOwnerId(ownerId);
         return group;
     }
 
     //在群里添加一个用户，也可以用作用户加群，
     public  static  boolean JoinGroup(String userId,String groupId){
-        try{
-            Connection connection= MySQLConnect.Instance().GetConnection();
-            String sql="insert groupid,userid into gulink values(?,?)";
-            PreparedStatement preparedStatement=connection.prepareStatement(sql);
-            preparedStatement.setString(1,groupId);
-            preparedStatement.setString(2,userId);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return true;
+        String sql="insert groupid,userid into gulink values(?,?)";
+        String []values={groupId,userId};
+       return MySQLConnect.Instance().UpdateDatabase(sql,values);
+
     }
     //将某人移出某群，也可用于退群
     public  static boolean RemoveFromGroup(String userId,String groupId){
-        try{
-            Connection connection=MySQLConnect.Instance().GetConnection();
-            String sql="delte from gulink where groupid=?&userid=?";
-            PreparedStatement preparedStatement=connection.prepareStatement(sql);
-            preparedStatement.setString(1,groupId);
-            preparedStatement.setString(2,userId);
-           int l= preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return true;
+        String sql="delte from gulink where groupid=?&userid=?";
+        String []values={groupId,userId};
+        return  MySQLConnect.Instance().UpdateDatabase(sql,values);
+
     }
     //解散群
     public static  boolean DissovleGroup(String groupId){
-        try{
-            Connection connection=MySQLConnect.Instance().GetConnection();
-            String sql="delete from gulink where groupid=?";
-            String sql1="delete from gelink where id=?";
-            String sql2="delete from timegroup where id=?";
-            PreparedStatement preparedStatement=connection.prepareStatement(sql);
-            PreparedStatement preparedStatement1=connection.prepareStatement(sql1);
-            PreparedStatement preparedStatement2=connection.prepareStatement(sql2);
-            preparedStatement.setString(1,groupId);
-            preparedStatement1.setString(1,groupId);
-            preparedStatement2.setString(1,groupId);
-            preparedStatement.executeUpdate();
-            preparedStatement1.executeUpdate();
-            preparedStatement2.executeUpdate();
-            preparedStatement.close();
-            preparedStatement2.close();;
-            preparedStatement1.close();
-            connection.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return true;
+        String sql="delete from gulink where groupid=?";
+        String sql1="delete from gelink where id=?";
+        String sql2="delete from timegroup where id=?";
+        String []values={groupId};
+       MySQLConnect.Instance().UpdateDatabase(sql,values);
+       MySQLConnect.Instance().UpdateDatabase(sql1,values);
+       MySQLConnect.Instance().UpdateDatabase(sql2,values);
+       return true;
     }
     //得到群成员ID
     public  static ArrayList getMembersID(String groupId){
@@ -127,6 +85,7 @@ public class GroupDao {
            }
         return  userInfoList;
     }
+    //得到群主ID
     public static  String getGroupOwnerId(String groupId){
         String oid="";
         try{
